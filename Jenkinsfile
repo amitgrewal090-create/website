@@ -10,15 +10,15 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t intellipaat-website:latest .'
+                bat 'docker.exe build -t intellipaat-website:latest .'
             }
         }
 
         stage('Deploy Website') {
             steps {
-                sh '''
-                    docker rm -f intellipaat-website-container || true
-                    docker run -d --name intellipaat-website-container -p 8084:80 intellipaat-website:latest
+                bat '''
+                    docker.exe rm -f intellipaat-website-container 2>NUL
+                    docker.exe run -d --name intellipaat-website-container -p 8084:80 intellipaat-website:latest
                 '''
             }
         }
