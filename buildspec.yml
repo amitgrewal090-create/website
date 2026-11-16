@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Starting Docker build"
+
+  build:
+    commands:
+      - echo "Building website Docker image"
+      - docker build -t intellipaat-website:latest .
+
+  post_build:
+    commands:
+      - echo "Docker image build completed"
+      - docker images
